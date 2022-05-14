@@ -14,6 +14,8 @@ $sql = "DELETE FROM anggota WHERE id=$id";
 
 if ($db->query($sql) === TRUE) {
     echo "Record deleted successfully";
+
+    //redirect ke halaman list.php
     header("location: list.php", true);
 } else {
     echo "Error deleting record: " . $db->error;
