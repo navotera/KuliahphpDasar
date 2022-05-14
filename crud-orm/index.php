@@ -52,20 +52,20 @@
         </div>
         <div class="col-8">
             Aplikasi ini akan melakukan pencatatan terhadap data anggota dan simpanannya
+
+            <div class="row my-4">
+                <div class="col"><a href="form/anggota.php"><button class="btn btn-outline-primary shadow-sm "><i class="bi bi-plus-lg"></i> Tambah Anggota</button></a></div>
+                <div class="col"><a href="list/anggota.php"><button class="btn btn-outline-primary shadow-sm "><i class="bi bi-people-fill"></i> Daftar Anggota</button></a></div>
+                <div class="col"><a href="list/pinjaman.php"><button class="btn btn-outline-primary shadow-sm "><i class="bi bi-plus-lg"></i> Daftar Pinjaman</button></a></div>
+
+            </div>
         </div>
 
 
     </div>
 
 
-    <div class="row my-5">
 
-        <div class="col-6"><a href="form/anggota.php"><button class="btn btn-primary"><i class="bi bi-plus-lg"></i> Tambah Anggota</button></a></div>
-        <div class="col-6"><a href="list/anggota.php"><button class="btn btn-primary"><i class="bi bi-people-fill"></i> Daftar Anggota</button></div>
-
-
-
-    </div>
 
 
 
