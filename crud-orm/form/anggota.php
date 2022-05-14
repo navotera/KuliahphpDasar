@@ -14,8 +14,16 @@
 
 <body>
     <div class="container">
-        <div class="row p-3 align-items-center mt-4 bg-danger">
-        </div>
+
+        <!-- Jika ada parameter msg yang didapat dari hasil penyimpanan data atau update data maka tampilkan pesan -->
+        <?php if (isset($_GET['msg'])) : ?>
+
+            <div class="alert alert-warning alert-dismissible fade show mt-4" role="alert">
+                <?= $_GET['msg']; ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+        <?php endif; ?>
 
         <div class="row  mt-4">
             <div class="col-6">
