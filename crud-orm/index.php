@@ -24,6 +24,29 @@
 
     <div class="row my-5">
 
+        <div class="col bg-info text-dark p-3 shadow-sm ">
+            <h3>Dana Saat ini</h3>
+            Rp. 100.000.000
+        </div>
+        <div class="col bg-white text-dark p-3 shadow-sm ">
+            <h3>Jumlah Anggota</h3>
+            50
+        </div>
+        <div class="col bg-primary text-dark p-3 shadow-sm ">
+            <h3>Total Pinjaman</h3>
+            Rp. 10.000.000
+        </div>
+        <div class="col bg-white text-dark p-3 shadow-sm ">
+            <h3>Dana Saat ini</h3>
+            Rp. 100.000.000
+        </div>
+
+
+    </div>
+
+
+    <div class="row my-5">
+
         <div class="col-4">
             <img src="https://www.continent8.com/wp-content/uploads/2017/10/office-icon.jpg" height="140px">
         </div>
@@ -38,7 +61,7 @@
     <div class="row my-5">
 
         <div class="col-6"><a href="form/anggota.php"><button class="btn btn-primary"><i class="bi bi-plus-lg"></i> Tambah Anggota</button></a></div>
-        <div class="col-6"></div>
+        <div class="col-6"><a href="list/anggota.php"><button class="btn btn-primary"><i class="bi bi-people-fill"></i> Daftar Anggota</button></div>
 
 
 
