@@ -12,11 +12,9 @@ $id = $_GET['id'];
 
 $sql = "DELETE FROM anggota WHERE id=$id";
 
-if ($conn->query($sql) === TRUE) {
+if ($db->query($sql) === TRUE) {
     echo "Record deleted successfully";
+    header("location: list.php", true);
 } else {
-    echo "Error deleting record: " . $conn->error;
+    echo "Error deleting record: " . $db->error;
 }
-
-
-header("location: index . php", true);
