@@ -74,11 +74,9 @@ $tipe_list = tipeAnggotaORM::findMany();
                 <div class="mb-3">
                     <label for="email">Tipe Anggota</label>
                     <select class="form-control" name="tipe_id">
-
                         <?php foreach ($tipe_list as $tipe) : ?>
                             <option value="<?= $tipe->id; ?>" <?= ($id && $anggota->tipe_id == $tipe->id) ? 'selected' : ''; ?>><?= $tipe->nama; ?></option>
                         <?php endforeach; ?>
-
                     </select>
                 </div>
 

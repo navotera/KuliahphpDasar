@@ -9,7 +9,7 @@ class tipeAnggotaORM extends Model
 
     public static function getNama($id)
     {
-        $tipe = tipeAnggotaORM::findOne($id);
+        $tipe = self::findOne($id);
         return ($tipe) ? $tipe->nama : '<span class="text-muted">Belum diisi</span>';
     }
 }
