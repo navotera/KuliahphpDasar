@@ -1,6 +1,8 @@
 <?php
 
 require_once('config.php');
+
+//note
 class tipeAnggotaORM extends Model
 {
     public static $_table = 'tipe_anggota'; //harus sama dengan nama tabel di database
