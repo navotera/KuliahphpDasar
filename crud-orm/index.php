@@ -48,17 +48,43 @@
     <div class="row my-5">
 
         <div class="col-4">
-            <img src="https://www.continent8.com/wp-content/uploads/2017/10/office-icon.jpg" height="140px">
+            <img src="https://www.continent8.com/wp-content/uploads/2017/10/office-icon.jpg" height="340px">
         </div>
         <div class="col-8">
             Aplikasi ini akan melakukan pencatatan terhadap data anggota dan simpanannya
 
             <div class="row my-4">
-                <div class="col"><a href="anggota/form.php"><button class="btn btn-outline-primary shadow-sm "><i class="bi bi-plus-lg"></i> Tambah Anggota</button></a></div>
-                <div class="col"><a href="anggota/list.php"><button class="btn btn-outline-primary shadow-sm "><i class="bi bi-people-fill"></i> Daftar Anggota</button></a></div>
-                <div class="col"><a href="pinjaman/list.php"><button class="btn btn-outline-primary shadow-sm "><i class="bi bi-plus-lg"></i> Daftar Pinjaman</button></a></div>
+
+                <div class="col-3">
+                    <img src="images/users-icon.png" class="mx-auto d-block" height="80px">
+                </div>
+
+                <div class="col-9 pt-4">
+                    <div class="float-start me-3"><a href="anggota/form.php"><button class="btn btn-outline-primary shadow-sm "><i class="bi bi-plus-lg"></i> Tambah Anggota</button></a></div>
+                    <div class="float-start me-3"><a href="anggota/list.php"><button class="btn btn-outline-primary shadow-sm "><i class="bi bi-people-fill"></i> Daftar Anggota</button></a></div>
+                    <div class="float-start me-3"><a href="pinjaman/list.php"><button class="btn btn-outline-primary shadow-sm "><i class="bi bi-plus-lg"></i> Daftar Pinjaman</button></a></div>
+                </div>
+
 
             </div>
+
+
+            <div class="row my-4">
+
+                <div class="col-3">
+                    <img src="images/money-in.png" class="mx-auto d-block" height="80px">
+                </div>
+
+                <div class="col-9 pt-4">
+                    <div class="float-start me-3"><a href="anggota/form.php"><button class="btn btn-outline-primary shadow-sm "><i class="bi bi-plus-lg"></i>Form Simpanan</button></a></div>
+                    <div class="float-start me-3 "><a href="anggota/list.php"><button class="btn btn-outline-primary shadow-sm "><i class="bi bi-archive me-1"></i>List Simpanan</button></a></div>
+                    <div class="float-start me-3"><a href="pinjaman/list.php"><button class="btn btn-outline-primary shadow-sm "><i class="bi bi-plus-lg"></i>Form Pinjaman</button></a></div>
+                </div>
+
+
+            </div>
+
+
         </div>
 
 

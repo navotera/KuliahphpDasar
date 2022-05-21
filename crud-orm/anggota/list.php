@@ -46,7 +46,7 @@ $list = anggotaORM::findMany();
 
         </div>
 
-        <div class="row align-items-center mt-4">
+        <div class="row align-items-center mt-4 px-3">
 
             <table class="table table-bordered">
                 <tr>
