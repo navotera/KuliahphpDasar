@@ -24,19 +24,19 @@
 
     <div class="row my-5">
 
-        <div class="col bg-info text-dark p-3 shadow-sm ">
+        <div class="col bg-info text-white p-3 shadow me-2">
             <h3>Dana Saat ini</h3>
             Rp. 100.000.000
         </div>
-        <div class="col bg-white text-dark p-3 shadow-sm ">
+        <div class="col bg-white text-dark p-3 shadow-sm me-2">
             <h3>Jumlah Anggota</h3>
             50
         </div>
-        <div class="col bg-primary text-dark p-3 shadow-sm ">
-            <h3>Total Pinjaman</h3>
+        <div class="col bg-primary text-white p-3 shadow me-2">
+            <h3 class="font-white">Total Pinjaman</h3>
             Rp. 10.000.000
         </div>
-        <div class="col bg-white text-dark p-3 shadow-sm ">
+        <div class="col bg-white text-dark p-3 shadow-sm me-2">
             <h3>Dana Saat ini</h3>
             Rp. 100.000.000
         </div>
@@ -54,9 +54,9 @@
             Aplikasi ini akan melakukan pencatatan terhadap data anggota dan simpanannya
 
             <div class="row my-4">
-                <div class="col"><a href="form/anggota.php"><button class="btn btn-outline-primary shadow-sm "><i class="bi bi-plus-lg"></i> Tambah Anggota</button></a></div>
-                <div class="col"><a href="list/anggota.php"><button class="btn btn-outline-primary shadow-sm "><i class="bi bi-people-fill"></i> Daftar Anggota</button></a></div>
-                <div class="col"><a href="list/pinjaman.php"><button class="btn btn-outline-primary shadow-sm "><i class="bi bi-plus-lg"></i> Daftar Pinjaman</button></a></div>
+                <div class="col"><a href="anggota/form.php"><button class="btn btn-outline-primary shadow-sm "><i class="bi bi-plus-lg"></i> Tambah Anggota</button></a></div>
+                <div class="col"><a href="anggota/list.php"><button class="btn btn-outline-primary shadow-sm "><i class="bi bi-people-fill"></i> Daftar Anggota</button></a></div>
+                <div class="col"><a href="pinjaman/list.php"><button class="btn btn-outline-primary shadow-sm "><i class="bi bi-plus-lg"></i> Daftar Pinjaman</button></a></div>
 
             </div>
         </div>
