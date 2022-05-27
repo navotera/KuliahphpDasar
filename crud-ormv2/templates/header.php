@@ -15,8 +15,8 @@
 <div class="container">
 
     <div class="row my-5">
-        <div class="col-12">
-            <h1> Koperasi Tsar Gaban </h1>
+        <div class="col-12 text-start">
+            <img src="images/logo.png" class="d-block" height="130px">
         </div>
 
     </div>
@@ -39,7 +39,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a href="?page=anggota/form" class="dropdown-item"> Tambah </a></li>
-                                <li><a href="anggota/list.php" class="dropdown-item"> Daftar</a></li>
+                                <li><a href="?page=anggota" class="dropdown-item"> Daftar</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">

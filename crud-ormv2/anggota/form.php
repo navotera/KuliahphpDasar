@@ -10,8 +10,8 @@ $tipe_list = tipeAnggotaORM::findMany();
 
 <div class="row  mt-4">
     <div class="col-6">
-        <h1>Form Identitas Anggota</h1>
-        <sub>Isikan identitas anggota anda</sub>
+        <h2>Form Identitas Anggota</h2>
+        <small class="text-muted">Isikan identitas anggota anda</small>
     </div>
 
 </div>
