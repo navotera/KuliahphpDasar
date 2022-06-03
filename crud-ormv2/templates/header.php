@@ -33,7 +33,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="<?= app_path(); ?>">Dashboard</a>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown px-2">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Anggota
                             </a>
@@ -42,16 +42,16 @@
                                 <li><a href="?page=anggota" class="dropdown-item"> Daftar</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown px-2">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Simpanan
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a href="simpanan/form.php" class="dropdown-item"> Tambah </a></li>
-                                <li><a href="simpanan/list.php" class="dropdown-item"> Daftar</a></li>
+                                <li><a href="?page=simpanan" class="dropdown-item"> Tambah </a></li>
+                                <li><a href="?page=simpanan/list.php" class="dropdown-item"> Daftar</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown px-2">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Pinjaman
                             </a>

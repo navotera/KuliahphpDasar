@@ -25,7 +25,7 @@
 
     <div class="col-7 pe-4 ">
 
-        <div class="row my-4 shadow-sm p-3 mb-5 bg-body rounded">
+        <div class="row my-4 shadow-sm p-3 mb-2 bg-body rounded">
             <h4>Pembayaran Periode</h4>
 
             <table class="table">
