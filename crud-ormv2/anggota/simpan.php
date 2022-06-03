@@ -1,9 +1,10 @@
 <?php
 
 
-require_once('../orm/anggotaORM.php');
+
 require_once('../helpers/common.php');
 require_once('../app_config.php');
+require_once('../orm/anggotaORM.php');
 
 
 $post = (object) $_POST;

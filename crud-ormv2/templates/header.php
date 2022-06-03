@@ -39,7 +39,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a href="?page=anggota/form" class="dropdown-item"> Tambah </a></li>
-                                <li><a href="?page=anggota" class="dropdown-item"> Daftar</a></li>
+                                <li><a href="?page=anggota/list" class="dropdown-item"> Daftar</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown px-2">
