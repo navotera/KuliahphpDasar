@@ -37,8 +37,8 @@ $list = anggotaORM::findMany();
                 <td><?= $anggota->telp; ?></td>
                 <td><?= tipeAnggotaORM::getNama($anggota->tipe_id); ?></td>
                 <td>
-                    <a href="../anggota/form.php?id=<?= $anggota->id; ?>" class="btn btn-sm btn-primary">Edit</a>
-                    <a href="../anggota/delete.php?id=<?= $anggota->id; ?>" class="btn btn-sm btn-danger">Delete</a>
+                    <a href="<?= BASE_PATH; ?>?page=anggota/form&id=<?= $anggota->id; ?>" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="<?= BASE_PATH; ?>?page=anggota/delete&id=<?= $anggota->id; ?>" class="btn btn-sm btn-danger">Delete</a>
                 </td>
             </tr>
         <?php endforeach; ?>
