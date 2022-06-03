@@ -1,6 +1,6 @@
 <?php
 
-
+// format_rupiah(1000000) hasil adalah Rp. 10.000.000
 function format_rupiah($angka)
 {
     $hasil_rupiah = "Rp. " . format_uang($angka);

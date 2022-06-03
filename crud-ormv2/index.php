@@ -1,9 +1,9 @@
+<?php require_once 'app_config.php'; ?>
 <?php require_once 'helpers/common.php'; ?>
 <?php require_once 'helpers/autoload.php'; ?>
 
 <!-- Load header -->
 <?php include_once('templates/header.php'); ?>
-
 
 
 <!-- Load content -->
@@ -27,22 +27,12 @@ if ($page === false) {
 //http://localhost/aplikasi_penjualan/?page=pelanggan/form_tambah
 $loadFile = (strpos($page, '/') !== false) ? $page . '.php' : $page . '/index.php';
 
-
-
-
-?>
-
-
-
-<?php
 //page is only index
-if (!$page) : ?>
-    <div class="col-sm-12 col-md-12 well" id="content">
-        <h2><?= (isset($_SESSION['message'])) ? $_SESSION['message'] : ''; ?></h2>
+if (isset($_GET['message'])) : ?>
+    <div class="alert alert-info mt-4 mb-0" role="alert">
+        <p><?= (isset($_GET['message'])) ? $_GET['message'] : ''; ?></p>
     </div>
 <?php endif; ?>
-
-
 
 <!-- accessed not index but with page as parameter -->
 <?php

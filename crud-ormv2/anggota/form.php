@@ -3,8 +3,8 @@
 $id = (isset($_GET['id'])) ? $_GET['id'] : 0;
 
 $anggota = anggotaORM::findOne($id);
-
 $tipe_list = tipeAnggotaORM::findMany();
+
 
 ?>
 
@@ -18,7 +18,7 @@ $tipe_list = tipeAnggotaORM::findMany();
 
 <div class="row align-items-center mt-4">
 
-    <form action="../anggota/simpan.php" method="POST">
+    <form action="<?= app_path(); ?>/anggota/simpan.php" method="POST">
 
         <div class="mb-3 mt-4">
             <label for="nama">Nama</label>

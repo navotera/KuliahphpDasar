@@ -2,6 +2,9 @@
 
 
 require_once('../orm/anggotaORM.php');
+require_once('../helpers/common.php');
+require_once('../app_config.php');
+
 
 $post = (object) $_POST;
 
@@ -20,6 +23,9 @@ $anggota->email = $post->email;
 $anggota->tipe_id = $post->tipe_id;
 $anggota->save();
 
+
+
+$redirect = BASE_PATH . '?anggota/list.php&message=Simpan Berhasil';
 if ($anggota->id) {
-    header("location: ../anggota/list.php?msg=Penyimpanan data Berhasil", true);
+    header("location: $redirect", true);
 }

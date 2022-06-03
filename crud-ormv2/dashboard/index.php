@@ -1,4 +1,4 @@
-<div class="row my-5">
+<div class="row my-4">
 
     <div class="col bg-info text-white p-3 shadow me-2">
         <h3>Dana Saat ini</h3>
