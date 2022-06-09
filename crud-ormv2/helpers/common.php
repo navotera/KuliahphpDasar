@@ -1,43 +1,6 @@
 <?php
 
-// format_rupiah(1000000) hasil adalah Rp. 10.000.000
-function format_rupiah($angka)
-{
-    $hasil_rupiah = "Rp. " . format_uang($angka);
-    return $hasil_rupiah;
-}
 
-
-function format_uang($angka)
-{
-    $nilai = number_format($angka, 0, ',', '.');
-    return $nilai;
-}
-
-function format_tanggal_ID($tanggal)
-{
-    $bulan = array(
-        1 =>   'Januari',
-        'Februari',
-        'Maret',
-        'April',
-        'Mei',
-        'Juni',
-        'Juli',
-        'Agustus',
-        'September',
-        'Oktober',
-        'November',
-        'Desember'
-    );
-    $pecahkan = explode('-', $tanggal);
-
-    // variabel pecahkan 0 = tanggal
-    // variabel pecahkan 1 = bulan
-    // variabel pecahkan 2 = tahun
-
-    return $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0];
-}
 
 function random_string($length = 10)
 {
@@ -54,19 +17,49 @@ function random_string($length = 10)
 
 function bread_crumb()
 {
-    $path = ($_GET['page']) ?? false;
 
-    if (!$path) return;
+    $calledClass = '';
+    $runFunction = 'index';
 
-    $list_page = explode('/', $path);
+
+    $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"], 0, strpos($_SERVER["SERVER_PROTOCOL"], '/'))) . '://';
+
+    $RequestURI = $protocol . "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+    $page = str_replace(base_url(), "", $RequestURI);
+    $pageParam = explode('/', $page);
+
+    //index.php is removed due to htaccess or beautiful url in webserver setting
+    $isIndexPhpExist = strtolower($pageParam[0]) == 'index.php';
+
+    //default function is index
+    $runFunction = isset($pageParam[2]) ? $pageParam[2] : 'index';
+
+    if ($isIndexPhpExist) {
+        $calledClass = (isset($pageParam[1])) ? ucfirst($pageParam[1]) : '';
+    }
+
+    $calledClass = strtolower($calledClass);
+
+    if (!$calledClass) return;
+
+
     echo "<div class='my-3 text-black-50'>Path : ";
 
-    $countVar = count($list_page) - 1;
+    $countVar = count($pageParam) - 1;
 
-    foreach ($list_page as $key =>  $page) {
+    foreach ($pageParam as $key =>  $page) {
+        if ($page == 'index.php')
+            continue;
+
         if ($countVar != $key) {
-            echo "<a href='?page=" . $page . "'>" . $page . "</a> / ";
+            echo "<a href='" . site_url() . $page . "'>" . $page . "</a> / ";
         } else {
+            //second parameter, remove the ? character
+            if (strpos($page, '?')) {
+                $page = explode('?', $page);
+                $page = $page[0];
+            }
             echo $page;
         }
     }
@@ -89,4 +82,73 @@ function app_dir()
     $completePath = explode('/', $_SERVER['PHP_SELF']);
     $noIndexPath = str_replace('index.php', '', $_SERVER['PHP_SELF']);
     return   $root . '/' . $noIndexPath;
+}
+
+
+function redirect($url)
+{
+    echo '<script language="javascript">window.location.href ="' . $url . '"</script>';
+}
+
+function render($file, $data = [])
+{
+    extract($data);
+
+    //load header
+    include_once(dirname(__DIR__) . '/templates/header.php');
+
+
+    $is_file_exist = file_exists(dirname(__DIR__) . '/app/views/' . $file . '.php');
+
+    if ($is_file_exist)
+        include_once(dirname(__DIR__) . '/app/views/' . $file . '.php');
+    else
+        //echo dirname(__DIR__);
+        include_once(dirname(__DIR__) . '/app/views/' . $file . '/index.php');
+
+
+    include_once(dirname(__DIR__) . '/templates/footer.php');
+}
+
+
+
+
+if (!function_exists('base_url')) {
+    function base_url($atRoot = FALSE, $atCore = FALSE, $parse = FALSE)
+    {
+        if (isset($_SERVER['HTTP_HOST'])) {
+            $http = isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off' ? 'https' : 'http';
+            $hostname = $_SERVER['HTTP_HOST'];
+            $dir =  str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
+
+            $core = preg_split('@/@', str_replace($_SERVER['DOCUMENT_ROOT'], '', realpath(dirname(__FILE__))), NULL, PREG_SPLIT_NO_EMPTY);
+            $core = $core[0];
+
+            $tmplt = $atRoot ? ($atCore ? "%s://%s/%s/" : "%s://%s/") : ($atCore ? "%s://%s/%s/" : "%s://%s%s");
+            $end = $atRoot ? ($atCore ? $core : $hostname) : ($atCore ? $core : $dir);
+            $base_url = sprintf($tmplt, $http, $hostname, $end);
+        } else $base_url = 'http://localhost/';
+
+        if ($parse) {
+            $base_url = parse_url($base_url);
+            if (isset($base_url['path'])) if ($base_url['path'] == '/') $base_url['path'] = '';
+        }
+
+        return $base_url;
+    }
+}
+
+
+if (!function_exists('site_url')) {
+    function site_url($atRoot = FALSE, $atCore = FALSE, $parse = FALSE)
+    {
+        return base_url() . 'index.php/';
+    }
+}
+
+
+
+function get_template_path()
+{
+    return base_url() . 'templates/';
 }
