@@ -1,9 +1,6 @@
 <?php
 
 use App\ORM\TipeAnggota;
-
-
-
 ?>
 
 
