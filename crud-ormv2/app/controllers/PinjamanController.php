@@ -40,14 +40,12 @@ class PinjamanController
     function save()
     {
         //check if duplicate
-        $isExist = Pinjaman::where('kode', POST::get('kode'))->find();
+        $isExist = Pinjaman::where('kode', POST::get('kode'))->first();
 
-
-        if ($isExist) {
+        if ($isExist !== null) {
             echo 'duplicated';
             return;
         }
-
 
         $total_angsuran =  NumberFormat::DB(POST::get('jumlah'));
         $jumlah_kali_angsuran = POST::get('jumlah_kali_angsuran');
@@ -71,20 +69,17 @@ class PinjamanController
         $pinjaman->timestamps = time();
         $pinjaman->save();
 
-
         // tambah angsuran disini 
         $this->tambahRencanaAngsuran($pinjaman->id);
 
-
-
-        redirect('?page=anggota/detail&id=' . POST::get('anggota_id'));
+        redirect(site_url() . 'anggota/detail?id=' . POST::get('anggota_id'));
     }
 
 
     protected function tambahRencanaAngsuran($pinjaman_id)
     {
 
-        $pinjaman = Pinjaman::findOne($pinjaman_id);
+        $pinjaman = Pinjaman::find($pinjaman_id);
 
         $total_angsuran =  $pinjaman->jumlah;
         $jumlah_kali_angsuran = $pinjaman->jumlah_kali_angsuran;
@@ -93,11 +88,11 @@ class PinjamanController
 
         for ($i = 0; $i < $jumlah_kali_angsuran; $i++) {
 
-            $rencana_angsuran = RencanaAngsuran::create();
+            $rencana_angsuran = new RencanaAngsuran;
 
             $rencana_angsuran->pinjaman_id = $pinjaman_id;
             $rencana_angsuran->jumlah = $perhitungan_angsuran;
-            $rencana_angsuran->tanggal = Date::addMonths($pinjaman->tanggal_jatuh_tempo, $i);
+            $rencana_angsuran->tanggal = Date::addMonths($pinjaman->tanggal, $i);
             $rencana_angsuran->time_log = time();
             $rencana_angsuran->status_aktif = 1;
             $rencana_angsuran->save();

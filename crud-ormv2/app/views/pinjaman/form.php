@@ -22,7 +22,7 @@ if (!$anggota) {
 
 <div class="row align-items-center mt-1">
 
-    <form action="<?= base_url(); ?>?page=pinjaman/save" method="POST">
+    <form action="<?= site_url(); ?>pinjaman/save" method="POST">
 
 
         <div class="row mt-4">
@@ -54,7 +54,7 @@ if (!$anggota) {
 
             <div class="col-3 mb-3">
                 <label for="Tanggal">Tanggal Jatuh Tempo tiap bulan</label>
-                <input type="text" name="tanggal_jatuh_tempo_angsuran_perbulan" required class="form-control" placeholder="Isi tanggal dari 1 s/d 30">
+                <input type="text" name="tanggal_jatuh_tempo_angsuran_perbulan" required class="form-control" placeholder="Tanggal tanpa bulan & tahun">
             </div>
         </div>
 

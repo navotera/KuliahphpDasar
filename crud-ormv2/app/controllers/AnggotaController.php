@@ -10,6 +10,7 @@ use App\ORM\Anggota;
 use App\ORM\Simpanan;
 use App\ORM\Pinjaman;
 use App\ORM\TipeAnggota;
+use App\ORM\Angsuran;
 
 
 
@@ -24,22 +25,23 @@ class AnggotaController
         self::list();
     }
 
-    public function form()
-    {
-
-        $data['title'] = 'Form pendaftaran';
-        $data['abc'] = 'hola';
-        render('anggota/form', $data);
-    }
-
     public function list()
     {
 
         $data['list'] = Anggota::get();
 
-
         render('anggota/list', $data);
     }
+
+
+    public function form()
+    {
+
+        $data['title'] = 'Form pendaftaran';
+
+        render('anggota/form', $data);
+    }
+
 
 
     public function detail()
@@ -60,6 +62,7 @@ class AnggotaController
 
         $data['list_simpanan'] = Simpanan::list($anggota_id);
         $data['list_pinjaman'] = Pinjaman::list($anggota_id);
+        $data['list_angsuran'] = Angsuran::list($anggota_id);
 
         $data['tipe_anggota'] = TipeAnggota::getNama($anggota->tipe_id);
 

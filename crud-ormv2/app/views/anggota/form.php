@@ -29,8 +29,6 @@ $tipe_list = TipeAnggota::all();
             <input type="text" name="tanggal" class="form-control datepicker" placeholder="Tanggal pendaftaran" <?= (!$id) ? 'readonly' : ''; ?> value="<?= ($id) ? $anggota->tanggal : Date::inputHTML(); ?>">
         </div>
 
-
-
         <div class="row">
             <div class="mb-3 col-6">
                 <label for="nama">Nama</label>
@@ -52,9 +50,6 @@ $tipe_list = TipeAnggota::all();
             <label for="alamat">alamat</label>
             <input type="text" name="alamat" class="form-control" placeholder="Alamat" value="<?= ($id) ? $anggota->alamat : ''; ?>">
         </div>
-
-
-
 
 
         <div class="mb-3">

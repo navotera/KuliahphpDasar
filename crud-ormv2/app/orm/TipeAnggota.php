@@ -2,12 +2,9 @@
 
 namespace App\ORM;
 
-require_once(dirname(__DIR__, 2) . '/config/database.php');
+use App\Core\BaseORM;
 
-use Illuminate\Database\Eloquent\Model;
-
-
-class TipeAnggota extends Model
+class TipeAnggota extends BaseORM
 {
     protected $table = 'tipe_anggota'; //harus sama dengan nama tabel di database
 

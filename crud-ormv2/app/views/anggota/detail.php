@@ -3,8 +3,11 @@
 use App\Core\NumberFormat;
 use App\Core\Date;
 
+use App\ORM\RencanaAngsuran;
+
 
 ?>
+
 
 
 <div class="row">
@@ -73,6 +76,9 @@ use App\Core\Date;
                     <div class="col-10">
                         <p class="h5 text-success ps-0">Tabel Angsuran</p>
                     </div>
+                    <div class="col-2 text-end">
+                        <a href="<?= site_url(); ?>angsuran/form?anggota_id=<?= $anggota->id; ?>" class="btn btn-sm btn-outline-info ">Tambah</a>
+                    </div>
 
 
                     <table class="table">
@@ -91,8 +97,18 @@ use App\Core\Date;
                         </thead>
                         <tbody>
 
-
-
+                            <?php foreach ($list_angsuran as $key => $angsuran) : ?>
+                                <tr>
+                                    <td><?= $key + 1; ?></td>
+                                    <td><?= Date::formatID($angsuran->tanggal); ?></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><?= NumberFormat::IDR($angsuran->jumlah); ?></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -172,7 +188,7 @@ use App\Core\Date;
                                     <td><?= $key + 1; ?></td>
                                     <td><?= $pinjaman->kode; ?></td>
                                     <td><?= Date::formatID($pinjaman->tanggal); ?></td>
-                                    <td><?= NumberFormat::IDR($pinjaman->jumlah); ?></td>
+                                    <td><a class="show_rencana_angsuran" data-id="<?= $pinjaman->id; ?>" href="#" data-bs-toggle="modal" data-bs-target="#rencana_angsuran_list"><?= NumberFormat::IDR($pinjaman->jumlah); ?></a></td>
                                     <td class="text-center"><?= $pinjaman->jumlah_kali_angsuran; ?></td>
                                     <td class="text-center"><?= NumberFormat::IDR($pinjaman->angsuran); ?></td>
                                     <td> - </td>
@@ -188,4 +204,52 @@ use App\Core\Date;
 
         </div>
     </div>
+
 </div>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal  fade" id="rencana_angsuran_list" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Daftar Rencana Angsuran</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body " id="list_rencana_angsuran">
+
+
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $(document).on("click", ".show_rencana_angsuran", function() {
+
+
+        //alert($(this).data('id'));
+        let pinjaman_id = $(this).data('id');
+
+        $.ajax({
+            url: "<?= site_url(); ?>rencana_angsuran/list_rencana_angsuran?pinjaman_id=" + pinjaman_id,
+            success: function(result) {
+                $("#list_rencana_angsuran").html(result);
+            }
+        });
+
+    });
+</script>

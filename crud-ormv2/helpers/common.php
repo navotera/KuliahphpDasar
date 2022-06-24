@@ -111,6 +111,21 @@ function render($file, $data = [])
 }
 
 
+function view($file, $data = [])
+{
+    extract($data);
+
+
+    $is_file_exist = file_exists(dirname(__DIR__) . '/app/views/' . $file . '.php');
+
+    if ($is_file_exist)
+        include_once(dirname(__DIR__) . '/app/views/' . $file . '.php');
+    else
+        //echo dirname(__DIR__);
+        include_once(dirname(__DIR__) . '/app/views/' . $file . '/index.php');
+}
+
+
 
 
 if (!function_exists('base_url')) {

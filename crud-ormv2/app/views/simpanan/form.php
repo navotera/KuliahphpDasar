@@ -34,6 +34,11 @@ if (!$anggota) {
         </div>
 
         <div class="mb-3">
+            <label for="alamat">Kode Simpanan</label>
+            <input type="text" name="kode_simpanan" class="form-control" readonly placeholder="Alamat" value="<?= $kode_simpanan; ?>">
+        </div>
+
+        <div class="mb-3">
             <label for="Tanggal">Tanggal</label>
             <input type="text" name="tanggal" class="form-control datepicker" placeholder="Tanggal simpanan" value="<?= Date::today(); ?>">
         </div>
