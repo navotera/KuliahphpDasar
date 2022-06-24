@@ -25,6 +25,8 @@ class SimpananController
 
     public function form()
     {
+
+        // $anggota_id = $_GET['anggota_id'];
         $anggota_id = GET::get('anggota_id');
 
         $data['anggota'] = Anggota::find($anggota_id);
@@ -46,7 +48,7 @@ class SimpananController
 
         $post = (object) $_POST;
 
-        //default :: metode adalah insert
+        //default :: metode adalah insert atau menyimpan data baru
         $simpanan = new Simpanan;
 
         //mode update
@@ -58,6 +60,7 @@ class SimpananController
         $simpanan->jenis_id = SIMPANAN;
         $simpanan->jumlah = NumberFormat::DB($post->jumlah);
         $simpanan->tanggal = Date::formatDB($post->tanggal);
+        $simpanan->kode = $post->kode_simpanan;
         $simpanan->save();
 
 
