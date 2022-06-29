@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 29, 2022 at 08:16 AM
+-- Generation Time: Jun 29, 2022 at 08:40 AM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -68,6 +68,7 @@ CREATE TABLE `angsuran` (
   `status_lunas` int(11) NOT NULL DEFAULT '0',
   `denda` bigint(20) NOT NULL DEFAULT '0',
   `tanggal` date DEFAULT NULL,
+  `angsuran_ke` int(11) NOT NULL,
   `time_log` int(11) NOT NULL DEFAULT '0',
   `added_by` int(11) NOT NULL DEFAULT '0',
   `status_aktif` int(11) NOT NULL DEFAULT '0' COMMENT 'digunakan sebagai tabel angsuran aktif'
@@ -77,9 +78,8 @@ CREATE TABLE `angsuran` (
 -- Dumping data for table `angsuran`
 --
 
-INSERT INTO `angsuran` (`id`, `anggota_id`, `pinjaman_id`, `jumlah`, `status_jatuh_tempo`, `status_lunas`, `denda`, `tanggal`, `time_log`, `added_by`, `status_aktif`) VALUES
-(1, 8, 1, 5000000, 1, 1, 0, '2022-06-29', 1656489736, 0, 0),
-(2, 8, 1, 5000000, 1, 1, 0, '2022-06-29', 1656490285, 0, 0);
+INSERT INTO `angsuran` (`id`, `anggota_id`, `pinjaman_id`, `jumlah`, `status_jatuh_tempo`, `status_lunas`, `denda`, `tanggal`, `angsuran_ke`, `time_log`, `added_by`, `status_aktif`) VALUES
+(1, 8, 1, 5000000, 1, 1, 0, '2022-06-29', 1, 1656491212, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -283,7 +283,7 @@ ALTER TABLE `anggota`
 -- AUTO_INCREMENT for table `angsuran`
 --
 ALTER TABLE `angsuran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `jenis`
