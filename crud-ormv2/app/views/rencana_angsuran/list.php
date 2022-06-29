@@ -2,6 +2,9 @@
 
 use App\Core\Date;
 use App\Core\NumberFormat;
+
+use App\ORM\RencanaAngsuran;
+
 ?>
 
 <table class="table table-bordered">
@@ -12,7 +15,7 @@ use App\Core\NumberFormat;
             <td>Jumlah Angsuran</td>
             <td>Tanggal</td>
             <td>Status</td>
-            <td>Action</td>
+            <td>Info</td>
         </tr>
     </thead>
     <tbody>
@@ -21,10 +24,30 @@ use App\Core\NumberFormat;
                 <td><?= $key + 1; ?></td>
                 <td><?= NumberFormat::money($rencana_angsuran->jumlah); ?></td>
                 <td><?= Date::formatID($rencana_angsuran->tanggal); ?></td>
-                <td><?= $rencana_angsuran->status_lunas; ?></td>
-                <td><a href="#" class="btn btn-outline-primary"> Bayar </a></td>
+                <td><?= RencanaAngsuran::getStatusLunasLabel($rencana_angsuran->status_lunas);  ?></td>
+
+                <?php if (!$rencana_angsuran->status_lunas) : ?>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                Action
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="<?= site_url() . 'rencana_angsuran/dibayarkan?id=' . $rencana_angsuran->id; ?>">Bayar</a></li>
+                                <li><a class="dropdown-item" href="#">Jumlah Berbeda</a></li>
+
+                            </ul>
+                        </div>
+                    </td>
+                <?php endif; ?>
+                <?php if ($rencana_angsuran->status_lunas) : ?>
+
+                    <td> Dibayar : <?= Date::formatID($rencana_angsuran->tanggal_dibayarkan); ?></td>
+
+                <?php endif; ?>
             </tr>
         <?php endforeach; ?>
+
     </tbody>
 
 

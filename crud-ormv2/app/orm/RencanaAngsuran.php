@@ -21,4 +21,20 @@ class RencanaAngsuran extends BaseORM
         $list = self::where('pinjaman_id', $pinjaman_id)->orderByDesc('id')->get();
         return $list;
     }
+
+    public static function getStatusLunasLabel($status)
+    {
+
+        switch ($status) {
+            case 1:
+                $label = "<span class='badge bg-success shadow-sm text-grey'>Lunas</span>";
+                break;
+
+            case '0':
+                $label = "<span class='badge bg-warning text-muted'>Blm Lunas</span>";
+                break;
+        }
+
+        return $label;
+    }
 }

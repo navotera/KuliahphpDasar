@@ -92,9 +92,11 @@ class PinjamanController
 
             $rencana_angsuran->pinjaman_id = $pinjaman_id;
             $rencana_angsuran->jumlah = $perhitungan_angsuran;
-            $rencana_angsuran->tanggal = Date::addMonths($pinjaman->tanggal, $i);
+            $rencana_angsuran->tanggal = Date::addMonths($pinjaman->tanggal, $i, $pinjaman->tanggal_jatuh_tempo_angsuran_perbulan);
             $rencana_angsuran->time_log = time();
             $rencana_angsuran->status_aktif = 1;
+            $rencana_angsuran->angsuran_ke = $i + 1;
+            $rencana_angsuran->anggota_id = $pinjaman->anggota_id;
             $rencana_angsuran->save();
         }
     }

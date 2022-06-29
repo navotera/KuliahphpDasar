@@ -93,9 +93,6 @@ class AnggotaController
         $anggota->tanggal = Date::formatDB($post->tanggal);
         $anggota->save();
 
-
-
-
         Session::flash_message('Simpan Berhasil');
         $redirect = site_url() . 'anggota/list';
         if ($anggota->id) {
@@ -109,7 +106,6 @@ class AnggotaController
         if (!isset($_POST['id'])) {
             die("Error - id Tidak ada");
         }
-
 
         $id = $_POST['id'];
 

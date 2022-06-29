@@ -73,7 +73,7 @@ class Date
 
 
 
-    public static function addMonths($date, $months)
+    public static function addMonths($date, $months, $date_exact = false)
     {
 
         $date = new \DateTime($date);
@@ -91,8 +91,13 @@ class Date
             $back_to_init->modify($back_modifier);
         }
 
+        $returned_date = $date->format('Y-m-d');
 
+        if ($date_exact) {
+            $date->setDate($date->format('Y'), $date->format('m'), $date_exact);
+            $returned_date = $date->format('Y-m-d');
+        }
 
-        return $date->format('Y-m-d');
+        return $returned_date;
     }
 }

@@ -35,6 +35,9 @@ class Init
         $calledClass = ($calledClass === '') ?  'home' : $calledClass;
 
 
+        $calledClass = self::changeUnderscoreToUpper($calledClass);
+
+
         if ($isIndexPhpExist && $runFunction != 'index') {
             //check if the URL  have the $_GET parameter
             $runFunction = (strpos($runFunction, '?')) ? substr($runFunction, 0, strpos($runFunction, '?')) : $runFunction;
@@ -56,5 +59,37 @@ class Init
              */
             return $prototypeClass->$runFunction();
         }
+    }
+
+
+    public static function changeUnderscoreToUpper($string)
+    {
+        $isUnderscoreExist = strpos($string, '_');
+
+        if (!$isUnderscoreExist)
+            return $string;
+
+
+        // $ptn = "/_[a-z]?/";
+        // $result = preg_replace_callback($ptn, "callbackhandler", $string);
+
+        // return $result;
+        // function callbackhandler($matches)
+        // {
+        //     return strtoupper(ltrim($matches[0], "_"));
+        // }
+
+
+
+
+        $string = preg_replace_callback(
+            '/(?:^|_)([a-z])/',
+            function ($m) {
+                return strtoupper($m[1]);
+            },
+            $string
+        );
+        return $string; // HelloWorldAgain
+
     }
 }
