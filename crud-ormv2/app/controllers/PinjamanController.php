@@ -76,22 +76,29 @@ class PinjamanController
     }
 
 
+    public function contoh_for()
+    {
+
+        for ($i = 0; $i < 20; $i++) {
+            echo $i;
+            echo '<br>';
+        }
+    }
+
+
     protected function tambahRencanaAngsuran($pinjaman_id)
     {
 
         $pinjaman = Pinjaman::find($pinjaman_id);
 
-        $total_angsuran =  $pinjaman->jumlah;
         $jumlah_kali_angsuran = $pinjaman->jumlah_kali_angsuran;
-
-        $perhitungan_angsuran = $total_angsuran / $jumlah_kali_angsuran;
 
         for ($i = 0; $i < $jumlah_kali_angsuran; $i++) {
 
             $rencana_angsuran = new RencanaAngsuran;
 
             $rencana_angsuran->pinjaman_id = $pinjaman_id;
-            $rencana_angsuran->jumlah = $perhitungan_angsuran;
+            $rencana_angsuran->jumlah = $pinjaman->angsuran;
             $rencana_angsuran->tanggal = Date::addMonths($pinjaman->tanggal, $i, $pinjaman->tanggal_jatuh_tempo_angsuran_perbulan);
             $rencana_angsuran->time_log = time();
             $rencana_angsuran->status_aktif = 1;

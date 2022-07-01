@@ -92,9 +92,16 @@ use App\ORM\Angsuran;
                     <li class="nav-item">
                         <a href="#simpanan" class="nav-link" data-bs-toggle="tab">Simpanan</a>
                     </li>
-
-
                 </ul>
+
+
+
+
+
+
+
+
+
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="rencana_angsuran">
 
@@ -106,6 +113,7 @@ use App\ORM\Angsuran;
                             <tr>
                                 <td>No</td>
                                 <td>Jumlah</td>
+                                <td>Kode Pinjaman</td>
                                 <td>Angsuran Ke</td>
                                 <td>Tanggal Jatuh Tempo</td>
                                 <td>Status</td>
@@ -113,16 +121,21 @@ use App\ORM\Angsuran;
                             </tr>
 
                             <?php
+                            $bulan_ini = date('m');
+                            $tahun_ini = date('Y');
+
+
                             foreach ($list_pinjaman as $pinjaman) :
                                 //check rencana angsuran tiap pinjaman tersebut yang rencana angsuran jatuh tempo
                                 $today = date('Y-m-d');
-                                $rencana_angsuran_list = RencanaAngsuran::where('pinjaman_id', $pinjaman->id)->whereDate('tanggal', '<=', $today)->get();
+                                $rencana_angsuran_list = RencanaAngsuran::where('pinjaman_id', $pinjaman->id)->whereMonth('tanggal', '<=', $bulan_ini)->whereYear('tanggal', '<=', $tahun_ini)->get();
 
                                 foreach ($rencana_angsuran_list as $key => $rencana_angsuran) :
 
                             ?>
                                     <tr>
                                         <td><?= $key + 1; ?></td>
+                                        <td><?= $pinjaman->kode; ?></td>
                                         <td><?= NumberFormat::money($rencana_angsuran->jumlah); ?></td>
                                         <td><?= $rencana_angsuran->angsuran_ke; ?></td>
                                         <td><?= Date::formatID($rencana_angsuran->tanggal); ?></td>

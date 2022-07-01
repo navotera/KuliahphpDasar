@@ -34,16 +34,13 @@ class RencanaAngsuranController
         //get frequensi angsuran berdasarkan pinjaman ID
         $kali_angsuran = Angsuran::where('pinjaman_id', $rencana_angsuran->pinjaman_id)->count();
 
-
-
-
         $rencana_angsuran->status_lunas = 1;
         $rencana_angsuran->status_jatuh_tempo = ($today > $rencana_angsuran->tanggal) ? 1 : 0;
         $rencana_angsuran->tanggal_dibayarkan = $today;
         $rencana_angsuran->save();
 
         $angsuran = new Angsuran;
-        $angsuran->tanggal = date('Y-m-d');
+        $angsuran->tanggal = $today;
         $angsuran->jumlah = $rencana_angsuran->jumlah;
         $angsuran->pinjaman_id = $rencana_angsuran->pinjaman_id;
         $angsuran->time_log = time();
@@ -53,8 +50,6 @@ class RencanaAngsuranController
         $angsuran->angsuran_ke = $kali_angsuran + 1;
         $angsuran->save();
 
-
-
         //check apakah sudah lunas 
         $total_angsuran = Angsuran::where('pinjaman_id', $angsuran->pinjaman_id)->sum('jumlah');
         $pinjaman = Pinjaman::find($angsuran->pinjaman_id);
@@ -63,9 +58,6 @@ class RencanaAngsuranController
             $pinjaman->status_lunas = 1;
             $pinjaman->save();
         }
-
-
-
 
 
         redirect(site_url() . 'anggota/detail?id=' . $rencana_angsuran->anggota_id);
