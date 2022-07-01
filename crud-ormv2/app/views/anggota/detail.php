@@ -136,7 +136,7 @@ use App\ORM\Angsuran;
                                                     </button>
                                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                                         <li><a class="dropdown-item" href="<?= site_url() . 'rencana_angsuran/dibayarkan?id=' . $rencana_angsuran->id; ?>">Bayar</a></li>
-                                                        <li><a class="dropdown-item" href="#">Jumlah Berbeda</a></li>
+                                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#bayar_manual">Jumlah Berbeda</a></li>
 
                                                     </ul>
                                                 </div>
@@ -333,7 +333,7 @@ use App\ORM\Angsuran;
 
 
 <!-- Modal -->
-<div class="modal  fade" id="rencana_angsuran_list" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="rencana_angsuran_list" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -342,16 +342,58 @@ use App\ORM\Angsuran;
             </div>
             <div class="modal-body " id="list_rencana_angsuran">
 
-
-
-
-
-
+                <!-- Ajax list of rencana angsuran will be shown here -->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
             </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="bayar_manual" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Daftar Rencana Angsuran</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="form_bayar_manual">
+
+                <form method="POST" action="<?= site_url() . 'angsuran'; ?>">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="mb-3">
+                                <label class="form-label">Kode Pinjaman</label>
+                                <input type="kode" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-9">
+                            <div class="mb-3">
+                                <label class="form-label">Pokok Pinjaman</label>
+                                <input type="pokok_pinjaman" readonly class="form-control">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Isi Jumlah Custom Angsuran</label>
+                        <input type="jumlah_angsuran" class="form-control money" placeholder="Isikan jumlah angsuran ">
+                    </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Simpan</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+            </div>
+            </form>
         </div>
     </div>
 </div>

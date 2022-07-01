@@ -34,7 +34,7 @@ use App\ORM\RencanaAngsuran;
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><a class="dropdown-item" href="<?= site_url() . 'rencana_angsuran/dibayarkan?id=' . $rencana_angsuran->id; ?>">Bayar</a></li>
-                                <li><a class="dropdown-item" href="#">Jumlah Berbeda</a></li>
+                                <li><a class="dropdown-item" href="#" href="#" data-bs-toggle="modal" data-bs-target="#bayar_manual">Jumlah Berbeda</a></li>
 
                             </ul>
                         </div>
