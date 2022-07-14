@@ -19,8 +19,10 @@ use \App\Core\Init;
 
 
 
-<!-- Load content -->
+
 <?php
+
+//Load content 
 
 Init::run();
 

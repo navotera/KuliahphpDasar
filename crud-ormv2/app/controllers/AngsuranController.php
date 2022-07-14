@@ -8,7 +8,7 @@ use App\Core\NumberFormat;
 
 use App\ORM\Angsuran;
 use App\ORM\Anggota;
-
+use App\ORM\RencanaAngsuran;
 
 class AngsuranController
 {
@@ -30,16 +30,53 @@ class AngsuranController
     }
 
 
+    //bayar dengan jumlah berbeda
     function save()
     {
         $post = (object) $_POST;
 
-        $angsuran = new Angsuran;
+        $today = date('Y-m-d');
+        $bulan = date('m');
 
-        $angsuran->tanggal = Date::formatDB($post->tanggal);
-        $angsuran->jumlah = NumberFormat::DB($post->jumlah);
+        $jumlah_pembayaran = NumberFormat::db($post->jumlah);
+
+
+        $kali_angsuran = Angsuran::where('pinjaman_id', $post->pinjaman_id)->count();
+
+        //untuk mengetahui angsuran jatuh tempo maka kita akan menggunakan acuan rencana angsuran
+        $rencana_angsuran = RencanaAngsuran::find($post->rencana_angsuran_id);
+
+        $isJatuhTempo =  ($today > $rencana_angsuran->tanggal) ? 1 : 0;
+
+        $angsuran = new Angsuran;
+        $angsuran->tanggal = $today;
+        $angsuran->jumlah = NumberFormat::db($post->jumlah);
+        $angsuran->pinjaman_id = $post->pinjaman_id;
+        $angsuran->time_log = time();
+        $angsuran->status_lunas = 1;
+        $angsuran->status_jatuh_tempo = $isJatuhTempo;
         $angsuran->anggota_id = $post->anggota_id;
+        $angsuran->angsuran_ke = $kali_angsuran + 1;
         $angsuran->save();
+
+
+        $status_lunas = 1;
+        $jumlah_harus_dibayar = $jumlah_pembayaran;
+        //update rencana angsuran 
+        if ($jumlah_pembayaran < $rencana_angsuran->jumlah) {
+            $status_lunas = 0;
+            $jumlah_harus_dibayar = $rencana_angsuran->jumlah - $jumlah_pembayaran;
+        }
+
+
+        $rencana_angsuran->jumlah = $jumlah_harus_dibayar;
+        $rencana_angsuran->status_lunas = $status_lunas;
+        $rencana_angsuran->save();
+
+
+
+
+
 
         redirect(site_url() . 'anggota/detail?id=' . $post->anggota_id);
     }
