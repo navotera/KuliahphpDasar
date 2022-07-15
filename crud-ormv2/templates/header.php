@@ -79,7 +79,7 @@ use App\Core\Session;
                             </ul>
                         </li>
                     </ul>
-                    <span class="h6 shadow-sm bg-white rounded-pill text-dark p-2 mb-0 border px-3"> Hello Hendra 😊</span>
+                    <span class="h6 shadow-sm bg-white rounded-pill text-dark p-2 mb-0 border px-3"> Hello <?= session::get('username'); ?> 😊</span>
                 </div>
             </div>
         </nav>

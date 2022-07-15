@@ -88,6 +88,7 @@ function app_dir()
 function redirect($url)
 {
     echo '<script language="javascript">window.location.href ="' . $url . '"</script>';
+    exit;
 }
 
 function render($file, $data = [])
@@ -113,7 +114,8 @@ function render($file, $data = [])
 
 function view($file, $data = [])
 {
-    extract($data);
+    if ($data)
+        extract($data);
 
 
     $is_file_exist = file_exists(dirname(__DIR__) . '/app/views/' . $file . '.php');

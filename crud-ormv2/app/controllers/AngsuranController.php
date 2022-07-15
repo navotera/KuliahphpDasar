@@ -49,6 +49,7 @@ class AngsuranController
         $isJatuhTempo =  ($today > $rencana_angsuran->tanggal) ? 1 : 0;
 
         $angsuran = new Angsuran;
+        $angsuran->rencana_angsuran_id = $rencana_angsuran->id;
         $angsuran->tanggal = $today;
         $angsuran->jumlah = NumberFormat::db($post->jumlah);
         $angsuran->pinjaman_id = $post->pinjaman_id;
