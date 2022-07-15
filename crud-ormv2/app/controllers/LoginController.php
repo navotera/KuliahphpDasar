@@ -41,23 +41,29 @@ class LoginController
             redirect(site_url() . 'login');
         }
 
+        $user = $isUserExist;
+
         //user ada berdasarkan email yang diisi di form, kemudian dilanjutkan dengan pengecekan paswword
 
-        $canLoggedIn =  password_verify($post->password, $isUserExist->password);
+        $canLoggedIn =  password_verify($post->password, $user->password);
 
         if (!$canLoggedIn) {
             $_SESSION['message'] = "Anda tidak memiliki akses!";
             redirect(site_url() . 'login');
         }
 
-        echo 'anda berhasil login';
-        exit;
-
         //no problem with username and password, all is correct
-        $_SESSION['message'] = 'Hola ' . $isUserExist->username;
+        $_SESSION['message'] = 'Hola ' . $user->username;
         $_SESSION['isLoggedIn'] = true;
-        $_SESSION['UserID'] = $isUserExist->id;
-        $_SESSION['username'] = $isUserExist->username
+        $_SESSION['UserID'] = $user->id;
+        $_SESSION['username'] = $user->username;
         redirect(site_url());
+    }
+
+
+    public function logout()
+    {
+        session_destroy();
+        redirect(site_url() . 'login');
     }
 }
