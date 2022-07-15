@@ -80,6 +80,7 @@ use App\Core\Session;
                         </li>
                     </ul>
                     <span class="h6 shadow-sm bg-white rounded-pill text-dark p-2 mb-0 border px-3"> Hello <?= session::get('username'); ?> 😊</span>
+                    <a href="<?= site_url() . 'login/logout'; ?>" class="text-decoration-none h6 shadow-sm bg-white rounded-pill text-danger p-2 ms-2 mb-0 border px-3">Logout</a>
                 </div>
             </div>
         </nav>

@@ -40,6 +40,12 @@ class Session
         $_SESSION[$name] = $val;
     }
 
+    public static function set($name, $val)
+    {
+        unset($_SESSION[$name]);
+        $_SESSION[$name] = $val;
+    }
+
 
     public static function session_get($name)
     {
@@ -51,9 +57,14 @@ class Session
         return ($_SESSION[$name]) ?? false;
     }
 
-    public static function session_unset($name)
+    public static function clear($name)
     {
 
+        unset($_SESSION[$name]);
+    }
+
+    public static function session_unset($name)
+    {
         unset($_SESSION[$name]);
     }
 }

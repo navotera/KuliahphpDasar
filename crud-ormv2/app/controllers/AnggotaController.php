@@ -12,6 +12,7 @@ use App\ORM\Pinjaman;
 use App\ORM\TipeAnggota;
 use App\ORM\Angsuran;
 
+use App\ORM\User;
 
 
 class AnggotaController
@@ -21,12 +22,15 @@ class AnggotaController
     public function index()
     {
 
+
         //include_once dirname(__DIR__, 1) . '../views/anggota/index.php';
         self::list();
     }
 
     public function list()
     {
+        //check if user is logged in, if not, show the login page
+        User::isLoggedIn();
 
         $data['list'] = Anggota::get();
 
@@ -36,6 +40,8 @@ class AnggotaController
 
     public function form()
     {
+        //check if user is logged in, if not, show the login page
+        User::isLoggedIn();
 
         $data['title'] = 'Form pendaftaran';
 
@@ -46,6 +52,8 @@ class AnggotaController
 
     public function detail()
     {
+        //check if user is logged in, if not, show the login page
+        User::isLoggedIn();
 
         $anggota_id = $_GET['id'];
 
@@ -74,6 +82,8 @@ class AnggotaController
 
     public function save()
     {
+        //check if user is logged in, if not, show the login page
+        User::isLoggedIn();
 
         $post = (object) $_POST;
 
@@ -102,6 +112,9 @@ class AnggotaController
 
     public function delete()
     {
+        //check if user is logged in, if not, show the login page
+        User::isLoggedIn();
+
         //cek apakah ada nilai dari $_GET['id']
         if (!isset($_POST['id'])) {
             die("Error - id Tidak ada");

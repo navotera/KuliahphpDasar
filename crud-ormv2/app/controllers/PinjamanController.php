@@ -11,12 +11,16 @@ use App\ORM\Anggota;
 use App\ORM\TipeAnggota;
 use App\ORM\Pinjaman;
 use App\ORM\RencanaAngsuran;
+use App\ORM\User;
 
 class PinjamanController
 {
 
     public function form()
     {
+        //check if user is logged in, if not, show the login page
+        User::isLoggedIn();
+
         $anggota_id = GET::get('anggota_id');
 
         $data['anggota'] = Anggota::find($anggota_id);
@@ -39,6 +43,9 @@ class PinjamanController
 
     function save()
     {
+        //check if user is logged in, if not, show the login page
+        User::isLoggedIn();
+
         //check if duplicate
         $isExist = Pinjaman::where('kode', POST::get('kode'))->first();
 
@@ -88,6 +95,8 @@ class PinjamanController
 
     protected function tambahRencanaAngsuran($pinjaman_id)
     {
+        //check if user is logged in, if not, show the login page
+        User::isLoggedIn();
 
         $pinjaman = Pinjaman::find($pinjaman_id);
 
